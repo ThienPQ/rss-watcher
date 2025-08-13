@@ -1,0 +1,29 @@
+name: RSS Watcher
+
+on:
+  schedule:
+    - cron: '0 */2 * * *'   # chạy mỗi 2 giờ (UTC)
+  workflow_dispatch:
+
+jobs:
+  check_feeds:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run RSS script
+        env:
+          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
+          EMAIL_TO: ${{ secrets.EMAIL_TO }}
+          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
+        run: python rss_watcher.py
