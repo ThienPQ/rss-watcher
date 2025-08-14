@@ -1,81 +1,115 @@
+
 import feedparser
 import smtplib
-from email.message import EmailMessage
+import ssl
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from datetime import datetime
+import os
+import time
+import hashlib
 
-KEYWORDS_FILE = 'keywords.txt'
-SENT_FILE = 'sent_urls.txt'
-RSS_FILE = 'feeds.opml'
+# ===== Cấu hình =====
+OPML_FILE = "feeds.opml"
+KEYWORDS_FILE = "keywords.txt"
+SEEN_HASHES_FILE = "seen_hashes.txt"
 
+SMTP_SERVER = "smtp.gmail.com"
+SMTP_PORT = 465
+EMAIL_SENDER = "your_email@gmail.com"
+EMAIL_PASSWORD = "your_password"  # Sử dụng App Password nếu dùng Gmail 2FA
+EMAIL_RECEIVER = "receiver_email@gmail.com"
+
+# ===== Hàm tiện ích =====
 def load_keywords():
-    with open(KEYWORDS_FILE, 'r', encoding='utf-8') as f:
-        return [line.strip() for line in f if line.strip()]
-
-def load_sent():
-    try:
-        with open(SENT_FILE, 'r', encoding='utf-8') as f:
-            return set(line.strip() for line in f if line.strip())
-    except FileNotFoundError:
-        return set()
-
-def save_sent(sent):
-    with open(SENT_FILE, 'w', encoding='utf-8') as f:
-        for url in sent:
-            f.write(url + '\n')
-
-def load_feeds():
-    import xml.etree.ElementTree as ET
-    tree = ET.parse(RSS_FILE)
-    root = tree.getroot()
-    return [outline.attrib['xmlUrl'] for outline in root.findall('.//outline') if 'xmlUrl' in outline.attrib]
-
-def entry_matches(entry, keywords):
-    title = entry.get('title', '').lower()
-    summary = entry.get('summary', '').lower()
-    content = title + ' ' + summary
-    for rule in keywords:
-        if ' AND ' in rule:
-            terms = [t.lower() for t in rule.split(' AND ')]
-            if all(term in content for term in terms):
-                return True
+    with open(KEYWORDS_FILE, "r", encoding="utf-8") as f:
+        lines = [line.strip() for line in f if line.strip() and not line.startswith("#")]
+    and_keywords = []
+    or_keywords = []
+    for line in lines:
+        if " AND " in line:
+            and_keywords.append([kw.strip().lower() for kw in line.split("AND")])
         else:
-            if rule.lower() in content:
-                return True
+            or_keywords.append(line.lower())
+    return and_keywords, or_keywords
+
+def matches_keywords(text, and_keywords, or_keywords):
+    text = text.lower()
+    for group in and_keywords:
+        if all(word in text for word in group):
+            return True
+    for word in or_keywords:
+        if word in text:
+            return True
     return False
 
-def send_email(entries):
-    msg = EmailMessage()
-    msg['Subject'] = f"[RSS Alert] {len(entries)} tin tức liên quan"
-    msg['From'] = 'your_email@example.com'
-    msg['To'] = 'your_email@example.com'
-    body = '\n\n'.join([f"{e['title']}\n{e['link']}" for e in entries])
-    msg.set_content(body)
-    
-    with smtplib.SMTP_SSL('smtp.gmail.com', 465) as smtp:
-        smtp.login('your_email@example.com', 'your_app_password')
-        smtp.send_message(msg)
+def load_seen_hashes():
+    if os.path.exists(SEEN_HASHES_FILE):
+        with open(SEEN_HASHES_FILE, "r") as f:
+            return set(line.strip() for line in f)
+    return set()
 
+def save_seen_hashes(hashes):
+    with open(SEEN_HASHES_FILE, "w") as f:
+        for h in hashes:
+            f.write(h + "\n")
+
+def hash_entry(entry):
+    raw = entry.get("title", "") + entry.get("link", "")
+    return hashlib.sha256(raw.encode("utf-8")).hexdigest()
+
+def send_email(subject, body):
+    msg = MIMEMultipart("alternative")
+    msg["Subject"] = subject
+    msg["From"] = EMAIL_SENDER
+    msg["To"] = EMAIL_RECEIVER
+    msg.attach(MIMEText(body, "html"))
+
+    context = ssl.create_default_context()
+    with smtplib.SMTP_SSL(SMTP_SERVER, SMTP_PORT, context=context) as server:
+        server.login(EMAIL_SENDER, EMAIL_PASSWORD)
+        server.sendmail(EMAIL_SENDER, EMAIL_RECEIVER, msg.as_string())
+
+def parse_opml(opml_file):
+    import xml.etree.ElementTree as ET
+    tree = ET.parse(opml_file)
+    root = tree.getroot()
+    feeds = []
+    for outline in root.iter("outline"):
+        xml_url = outline.attrib.get("xmlUrl")
+        if xml_url:
+            feeds.append(xml_url)
+    return feeds
+
+# ===== Chạy chính =====
 def main():
-    feeds = load_feeds()
-    keywords = load_keywords()
-    sent = load_sent()
-    new_sent = set(sent)
-    matched = []
+    print(f"⏰ Running at {datetime.now()}")
+    feeds = parse_opml(OPML_FILE)
+    and_keywords, or_keywords = load_keywords()
+    seen_hashes = load_seen_hashes()
+    new_hashes = set()
+    matched_entries = []
 
-    for url in feeds:
-        d = feedparser.parse(url)
-        for entry in d.entries:
-            link = entry.get('link')
-            if link and link not in sent and entry_matches(entry, keywords):
-                matched.append(entry)
-                new_sent.add(link)
-    
-    if matched:
-        send_email(matched)
-        print(f"[+] Sent {len(matched)} matched entries.")
-    else:
-        print("[-] No matched entries found.")
+    for feed_url in feeds:
+        parsed = feedparser.parse(feed_url)
+        for entry in parsed.entries:
+            h = hash_entry(entry)
+            if h in seen_hashes:
+                continue
+            content = (entry.get("title", "") + " " + entry.get("summary", ""))
+            if matches_keywords(content, and_keywords, or_keywords):
+                matched_entries.append(entry)
+            new_hashes.add(h)
 
-    save_sent(new_sent)
+    if matched_entries:
+        html = "<h3>📰 Có bài viết mới liên quan:</h3><ul>"
+        for e in matched_entries:
+            html += f"<li><a href='{e.link}'>{e.title}</a><br><small>{e.get('published', '')}</small></li>"
+        html += "</ul>"
+        send_email("🔔 Tin mới phù hợp bộ lọc từ khóa", html)
+        print(f"✅ Đã gửi email với {len(matched_entries)} bài viết.")
 
-if __name__ == '__main__':
+    save_seen_hashes(seen_hashes.union(new_hashes))
+
+if __name__ == "__main__":
     main()
