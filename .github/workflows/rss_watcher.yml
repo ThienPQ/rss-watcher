@@ -25,4 +25,4 @@ jobs:
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-        run: python rss_watcher.py "Inoreader Feeds 20250813.xml" keywords.txt
+        run: python rss_watcher.py feeds.opml keywords.txt
