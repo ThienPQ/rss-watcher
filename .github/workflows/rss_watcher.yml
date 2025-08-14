@@ -2,28 +2,27 @@ name: RSS Watcher
 
 on:
   schedule:
-    - cron: '0 */2 * * *'   # chạy mỗi 2 giờ (UTC)
-  workflow_dispatch:
+    - cron: '*/5 * * * *'  # Chạy mỗi 5 phút
+  workflow_dispatch:       # Cho phép chạy thủ công
 
 jobs:
-  check_feeds:
+  run:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout code
+      - name: Checkout repository
         uses: actions/checkout@v3
 
       - name: Set up Python
         uses: actions/setup-python@v4
         with:
-          python-version: '3.11'
+          python-version: 3.11
 
       - name: Install dependencies
-        run: pip install -r requirements.txt
+        run: pip install feedparser
 
-      - name: Run RSS script
+      - name: Run RSS watcher
         env:
           EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
           EMAIL_TO: ${{ secrets.EMAIL_TO }}
           EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-        run: python rss_watcher.py
+        run: python rss_watcher.py "Inoreader Feeds 20250813.xml" keywords.txt
