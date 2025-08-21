@@ -16,9 +16,9 @@ SEEN_HASHES_FILE = "seen_hashes.txt"
 
 SMTP_SERVER = "smtp.gmail.com"
 SMTP_PORT = 465
-EMAIL_SENDER = "your_email@gmail.com"
-EMAIL_PASSWORD = "your_password"  # Sử dụng App Password nếu dùng Gmail 2FA
-EMAIL_RECEIVER = "receiver_email@gmail.com"
+EMAIL_SENDER = "thien.vpcp@gmail.com"
+EMAIL_PASSWORD = "hecs zrvl oczi gdoq"  # Sử dụng App Password nếu dùng Gmail 2FA
+EMAIL_RECEIVER = "thien.vpcp@gmail.com"
 
 # ===== Hàm tiện ích =====
 def load_keywords():
