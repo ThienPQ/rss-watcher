@@ -1,28 +1,61 @@
-name: RSS Watcher
+name: rss_watcher
+
 
 on:
-  schedule:
-    - cron: '*/5 * * * *'  # Chạy mỗi 5 phút
-  workflow_dispatch:       # Cho phép chạy thủ công
+workflow_dispatch:
+schedule:
+- cron: "*/5 * * * *"
+
+
+permissions:
+contents: write
+
 
 jobs:
-  run:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
+run:
+runs-on: ubuntu-latest
+steps:
+- uses: actions/checkout@v4
 
-      - name: Set up Python
-        uses: actions/setup-python@v4
-        with:
-          python-version: 3.11
 
-      - name: Install dependencies
-        run: pip install feedparser
+- name: Set up Python
+uses: actions/setup-python@v5
+with:
+python-version: "3.11"
 
-      - name: Run RSS watcher
-        env:
-          EMAIL_FROM: ${{ secrets.EMAIL_FROM }}
-          EMAIL_TO: ${{ secrets.EMAIL_TO }}
-          EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
-        run: python rss_watcher.py feeds.opml keywords.txt
+
+- name: Install deps
+run: |
+python -m pip install --upgrade pip
+pip install requests beautifulsoup4 lxml unidecode aiohttp feedparser
+
+
+# (Tuỳ chọn) Build feeds.opml theo chuyên mục mỗi ngày 1 lần bằng workflow schedule riêng
+# Ở đây chạy luôn: dùng sites.txt + category_patterns.txt để xuất feeds.opml gọn
+- name: Build category-only OPML
+run: |
+python build_category_opml.py --sites sites.txt --patterns category_patterns.txt --out feeds.opml
+
+
+- name: Run fast watcher
+env:
+SMTP_HOST: ${{ secrets.SMTP_HOST }}
+SMTP_PORT: ${{ secrets.SMTP_PORT }}
+SMTP_USER: ${{ secrets.SMTP_USER }}
+SMTP_PASS: ${{ secrets.SMTP_PASS }}
+SMTP_FROM: ${{ secrets.SMTP_FROM }}
+SMTP_TO: ${{ secrets.SMTP_TO }}
+MAX_CONCURRENCY: "24"
+REQ_TIMEOUT: "25"
+MAX_ENTRY_AGE_DAYS: "7"
+run: |
+python rss_watcher_fast.py feeds.opml keywords.txt
+
+
+- name: Commit state/cache if changed
+run: |
+git config user.name "rss-watcher bot"
+git config user.email "actions@users.noreply.github.com"
+git add .state/seen.json .state/cache.json feeds.opml
+git diff --staged --quiet || git commit -m "chore(rss): update state/cache and feeds.opml"
+git push

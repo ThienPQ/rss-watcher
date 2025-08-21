@@ -1,0 +1,42 @@
+# Danh sách mẫu chuyên mục muốn lấy (mỗi dòng là 1 pattern, dùng như substring/regex không phân biệt hoa thường)
+# Ví dụ: "Hà Nội" sẽ match cả "ha-noi", "ha noi" nếu URL hoặc tiêu đề có chuỗi gần giống.
+# Gợi ý chủ đề bám nhu cầu BQL Khu CNC/KCN Hà Nội:
+Hà Nội
+Ha Noi
+Kinh tế
+Kinh te
+Đô thị
+Do thi
+Quy hoạch
+Quy hoach
+Giao thông
+Giao thong
+Hạ tầng
+Ha tang
+Đầu tư
+Dau tu
+Môi trường
+Moi truong
+Đất đai
+Dat dai
+Xây dựng
+Xay dung
+Khu công nghiệp
+Khu cong nghiep
+Khu công nghệ cao
+Khu cong nghe cao
+Giải phóng mặt bằng
+Giai phong mat bang
+Cấp thoát nước
+Cap thoat nuoc
+Vỉa hè
+Via he
+Lấn chiếm
+Lan chiem
+An ninh
+Trật tự
+Trat tu
+Phòng cháy
+Phong chay
+Phòng cháy chữa cháy
+Phong chay chua chay
