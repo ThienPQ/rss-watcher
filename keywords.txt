@@ -1,21 +1,73 @@
-khu công nghệ cao AND Hà Nội
-khu công nghiệp AND Hà Nội
-Hòa Lạc AND đầu tư
-Ban quản lý khu công nghệ cao AND Hà Nội
-quản lý đất đai AND Hòa Lạc
-bồi thường giải phóng mặt bằng AND khu công nghệ cao AND Hà Nội
-xử lý môi trường AND khu công nghiệp AND Hà Nội
-an ninh trật tự AND khu công nghiệp AND Hà Nội
-phòng cháy chữa cháy AND khu công nghệ cao AND Hà Nội
-quy hoạch giao thông AND Hòa Lạc
-lấn chiếm đất AND Hòa Lạc
+# =========================
+# KEYWORDS – RSS Watcher
+# Quy ước:
+# - Mỗi dòng = 1 LUẬT.
+# - Trong 1 dòng: các từ/cụm từ cách nhau bằng khoảng trắng => AND.
+# - Dùng OR để tách các lựa chọn thay thế.
+# - Cụm có dấu cách đặt trong "dấu ngoặc kép".
+# - Muốn (A OR B) AND C  -> viết 2 dòng: "A C" và "B C".
+# =========================
 
+# --- Phạm vi cốt lõi: BQL Khu CNC/KCN Hà Nội ---
+"Khu công nghệ cao" "Hà Nội"
+"Khu công nghiệp" "Hà Nội"
+"KCN" "Hà Nội"
+
+"Ban Quản lý" "Khu công nghệ cao" "Hà Nội"
+"Ban Quản lý" "Khu công nghiệp" "Hà Nội"
+"BQL" "Khu công nghiệp" "Hà Nội"
+
+# Hòa Lạc (khu CNC Hà Nội)
+"Hòa Lạc" "Khu công nghệ cao"
+"Hòa Lạc" đầu tư
+"Hòa Lạc" "giải phóng mặt bằng"
+"Hòa Lạc" "quy hoạch"
+"Hòa Lạc" "giao thông"
+"Hòa Lạc" "môi trường"
+
+# --- Chủ đề nghiệp vụ trọng tâm (đều gắn 'Hà Nội' + KCN/CNC) ---
+
+# Đất đai / GPMB
+"đất đai" "khu công nghiệp" "Hà Nội"
+"đất đai" "Khu công nghệ cao" "Hà Nội"
+"bồi thường" "giải phóng mặt bằng" "Hà Nội"
+"thu hồi đất" "Hà Nội" "khu công nghiệp"
+
+# Quy hoạch – đầu tư – hạ tầng
+"quy hoạch" "khu công nghiệp" "Hà Nội"
+"quy hoạch" "KCN" "Hà Nội"
+"quy hoạch" "Khu công nghệ cao" "Hà Nội"
+"đầu tư" "khu công nghiệp" "Hà Nội"
+"hạ tầng" "khu công nghiệp" "Hà Nội"
+
+# Môi trường – nước thải – chất thải
+"môi trường" "khu công nghiệp" "Hà Nội"
+"môi trường" "Khu công nghệ cao" "Hà Nội"
+"nước thải" "khu công nghiệp" "Hà Nội"
+"xử lý nước thải" "KCN" "Hà Nội"
+"chất thải" "khu công nghiệp" "Hà Nội"
+
+# PCCC – an ninh trật tự
+"phòng cháy chữa cháy" "khu công nghiệp" "Hà Nội"
+"PCCC" "khu công nghiệp" "Hà Nội"
+"phòng cháy chữa cháy" "Khu công nghệ cao" "Hà Nội"
+"PCCC" "Khu công nghệ cao" "Hà Nội"
+"an ninh trật tự" "khu công nghiệp" "Hà Nội"
+"an ninh trật tự" "Khu công nghệ cao" "Hà Nội"
+
+# Giao thông – cấp thoát nước – lấn chiếm – xây dựng
+"giao thông" "khu công nghiệp" "Hà Nội"
+"cấp thoát nước" "khu công nghiệp" "Hà Nội"
+"lấn chiếm" "Hà Nội" "khu công nghiệp"
+"xây dựng" "khu công nghiệp" "Hà Nội"
+"trật tự xây dựng" "Hà Nội" "khu công nghiệp"
+
+# --- Địa bàn/đơn vị cụ thể theo yêu cầu ---
 # Phường Quốc Tử Giám (Đống Đa, Hà Nội)
-phường Quốc Tử Giám AND Hà Nội
-P. Quốc Tử Giám AND Hà Nội
-Quốc Tử Giám AND phường AND Hà Nội
+"phường Quốc Tử Giám" "Hà Nội"
+"Quốc Tử Giám" "Đống Đa"
 
-# Tổng công ty Thuốc lá Việt Nam (Vinataba)
-Tổng công ty Thuốc lá Việt Nam
-Vinataba AND đất vàng
+# --- Doanh nghiệp/đơn vị: Vinataba ---
+"Tổng công ty Thuốc lá Việt Nam"
+"Vinataba"
 
