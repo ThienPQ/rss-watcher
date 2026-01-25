@@ -163,7 +163,9 @@
     },
     "https://vovlive.vn/rss/tin-tuc/kinh-te": {},
     "https://vovlive.vn/rss/vov1/vov1-kinh-te": {},
-    "https://www.sggp.org.vn/rss/anninhtrattu-2.rss": {},
+    "https://www.sggp.org.vn/rss/anninhtrattu-2.rss": {
+      "https://www.sggp.org.vn/ha-noi-xac-dinh-5-doi-tuong-co-lien-quan-toi-hanh-vi-gay-roi-o-ham-kim-lien-post835199.html": 1769328923
+    },
     "https://www.sggp.org.vn/rss/dautukt-37.rss": {
       "https://www.sggp.org.vn/tphcm-mo-rong-co-hoi-thu-hut-dau-tu-doi-moi-sang-tao-da-nganh-post809451.html": 1755849990,
       "https://www.sggp.org.vn/khuyen-khich-ap-dung-hinh-thuc-mua-sam-cong-linh-hoat-dua-tren-ket-qua-dau-ra-post810538.html": 1756355644,
@@ -318,5 +320,5 @@
     "https://tieudung.kinhtedothi.vn/chinh-sach-quy-hoach.rss": {},
     "https://tieudung.kinhtedothi.vn/vat-lieu-xay-dung.rss": {}
   },
-  "last_run": 1769327823
+  "last_run": 1769328924
 }
