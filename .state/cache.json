@@ -2,105 +2,105 @@
   "https://thanhnien.vn/rss/dien-dan/van-hoa-giao-thong.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457729,
+    "fetched_at": 1769459447,
     "status": 200,
     "error": ""
   },
   "https://thanhnien.vn/rss/kinh-te.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457729,
+    "fetched_at": 1769459448,
     "status": 200,
     "error": "Response payload is not completed: <TransferEncodingError: 400, message='Not enough data to satisfy transfer length header.'>"
   },
   "https://thanhnien.vn/rss/kinh-te/kinh-te-xanh.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457729,
+    "fetched_at": 1769459448,
     "status": 200,
     "error": "Response payload is not completed: <TransferEncodingError: 400, message='Not enough data to satisfy transfer length header.'>"
   },
   "https://thanhnien.vn/rss/the-gioi/kinh-te-the-gioi.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457729,
-    "status": 502,
+    "fetched_at": 1769459448,
+    "status": 200,
     "error": "Response payload is not completed: <TransferEncodingError: 400, message='Not enough data to satisfy transfer length header.'>"
   },
   "https://thanhnien.vn/rss/van-hoa/mon-ngon-ha-noi.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457729,
+    "fetched_at": 1769459447,
     "status": 200,
     "error": ""
   },
   "https://thanhnien.vn/rss/xe/xe-giao-thong.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457729,
+    "fetched_at": 1769459448,
     "status": 200,
     "error": "Response payload is not completed: <TransferEncodingError: 400, message='Not enough data to satisfy transfer length header.'>"
   },
   "https://tienphong.vn/rss/dau-tu-165.rss": {
-    "etag": "0596c1a193701f8468a0816f9b93ca3d",
+    "etag": "8ba59b2b9e1e635ff0371bacb8ce91f3",
     "last_modified": null,
-    "fetched_at": 1769457363,
+    "fetched_at": 1769459447,
     "status": 200,
     "error": ""
   },
   "https://tienphong.vn/rss/do-thi-du-an-269.rss": {
-    "etag": "dd7d9b2d337074a286a8f72958c871bd",
+    "etag": "b29591171d77a2ea103f9d00964a2d00",
     "last_modified": null,
-    "fetched_at": 1769457363,
+    "fetched_at": 1769459447,
     "status": 200,
     "error": ""
   },
   "https://tienphong.vn/rss/giao-thong-do-thi-410.rss": {
-    "etag": "789ad4f1dadad1eec5f4760f02e6fc3c",
+    "etag": "1d61dd8d03e0a79d2e8912998b0e7b82",
     "last_modified": null,
-    "fetched_at": 1769457363,
+    "fetched_at": 1769459447,
     "status": 200,
     "error": ""
   },
   "https://tienphong.vn/rss/kinh-te--thi-truong-411.rss": {
-    "etag": "96a39b7fb9d69460b6a943192fff947f",
+    "etag": "c96010cd242a904b185bac86514d525e",
     "last_modified": null,
-    "fetched_at": 1769457363,
+    "fetched_at": 1769459447,
     "status": 200,
     "error": ""
   },
   "https://tienphong.vn/rss/kinh-te-3.rss": {
-    "etag": "7da1b4741a4d8b79891fbf5e850b3422",
+    "etag": "22f8f34f194b3cb501f27cd0947c26c8",
     "last_modified": null,
-    "fetched_at": 1769457729,
+    "fetched_at": 1769459447,
     "status": 200,
     "error": ""
   },
   "https://tienphong.vn/rss/nstd-dau-tu-245.rss": {
-    "etag": "fe051dcb532f9db772b23229883a3d65",
+    "etag": "2c753a0ec087d75c95ea70b50eedfb18",
     "last_modified": null,
-    "fetched_at": 1769457363,
+    "fetched_at": 1769459447,
     "status": 200,
     "error": ""
   },
   "https://tienphong.vn/rss/nstd-giao-thong-do-thi-244.rss": {
-    "etag": "d7aefa4568c138c3de51473e00695418",
+    "etag": "79fea44c89500f6ffb037a899add3cc6",
     "last_modified": null,
-    "fetched_at": 1769457729,
+    "fetched_at": 1769459447,
     "status": 200,
     "error": ""
   },
   "https://tienphong.vn/rss/nstd-moi-truong-313.rss": {
-    "etag": "b8d52df2a577f43655d0c240885c01f4",
+    "etag": "e2792cb632f5d9d3596a371d9c970692",
     "last_modified": null,
-    "fetched_at": 1769457363,
+    "fetched_at": 1769459447,
     "status": 200,
     "error": ""
   },
   "https://tienphong.vn/rss/song-xanh-dau-tu-444.rss": {
-    "etag": "9620d65a33796ae7ae3d0341f0b11095",
+    "etag": "898990ad05d35471308a64a2316c2c8c",
     "last_modified": null,
-    "fetched_at": 1769457363,
+    "fetched_at": 1769459447,
     "status": 200,
     "error": ""
   },
@@ -196,72 +196,72 @@
   "https://www.sggp.org.vn/rss/anninhtrattu-2.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457728,
+    "fetched_at": 1769459447,
     "status": 200,
     "error": ""
   },
   "https://www.sggp.org.vn/rss/dautukt-37.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457728,
+    "fetched_at": 1769459447,
     "status": 200,
     "error": ""
   },
   "https://www.sggp.org.vn/rss/kinhte-89.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457728,
+    "fetched_at": 1769459447,
     "status": 200
   },
   "https://www.sggp.org.vn/rss/kinhtedoisong24h-421.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457728,
+    "fetched_at": 1769459447,
     "status": 200,
     "error": ""
   },
   "https://www.sggp.org.vn/rss/quoc-phong-an-ninh-518.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457728,
+    "fetched_at": 1769459447,
     "status": 200,
     "error": ""
   },
   "https://www.sggp.org.vn/rss/xahoi-giaothong-3.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457728,
+    "fetched_at": 1769459447,
     "status": 200
   },
   "https://www.sggp.org.vn/rss/xahoi-gt-525.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457728,
+    "fetched_at": 1769459447,
     "status": 200
   },
   "https://www.sggp.org.vn/rss/xahoi-moitruong-52.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457730,
+    "fetched_at": 1769459448,
     "status": 200
   },
   "https://www.sggp.org.vn/rss/xaydungdang-204.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457729,
+    "fetched_at": 1769459447,
     "status": 200
   },
   "https://tieudung.kinhtedothi.vn/chinh-sach-quy-hoach.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457743,
+    "fetched_at": 1769459471,
     "status": 200,
     "error": ""
   },
   "https://tieudung.kinhtedothi.vn/vat-lieu-xay-dung.rss": {
     "etag": null,
     "last_modified": null,
-    "fetched_at": 1769457729,
+    "fetched_at": 1769459450,
     "status": 200,
     "error": ""
   },
